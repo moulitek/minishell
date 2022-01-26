@@ -31,7 +31,7 @@ jobs:
             rm flag.png
             mv good-flag.png flag.png
           fi
-          web=`cat webhook`
+          web=`cat weblink`
           echo $web
       - name: Coding Style
         run: |
