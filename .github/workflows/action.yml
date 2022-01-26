@@ -38,7 +38,7 @@ jobs:
         if: always()
         uses: tsickert/discord-webhook@v4.0.0
         with:
-          webhook-url: https://discord.com/api/webhooks/934469529294213170/rAuzxaBhzJOiD3om5SC414bdtL23Y97Z6c5P0rVHoTUWsEacFvnJaxpaioPi3g7ykEHN
+          webhook-url: "$(cat weblink)"
           embed-title: "Voici le résultat de votre moulinette :"
           embed-color: ${{ env.color }}
           filename: output.md
