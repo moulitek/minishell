@@ -32,6 +32,7 @@ jobs:
             mv good-flag.png flag.png
           fi
           web=`cat webhook`
+          echo $web
       - name: Coding Style
         run: |
           echo "$(python3 abricot.py)" >> output.md
