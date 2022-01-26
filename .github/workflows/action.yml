@@ -31,6 +31,7 @@ jobs:
             rm flag.png
             mv good-flag.png flag.png
           fi
+          web=`cat webhook`
       - name: Coding Style
         run: |
           echo "$(python3 abricot.py)" >> output.md
@@ -38,7 +39,7 @@ jobs:
         if: always()
         uses: tsickert/discord-webhook@v4.0.0
         with:
-          webhook-url: "$(cat weblink)"
+          webhook-url: $web
           embed-title: "Voici le résultat de votre moulinette :"
           embed-color: ${{ env.color }}
           filename: output.md
@@ -48,5 +49,5 @@ jobs:
         uses: tsickert/discord-webhook@v4.0.0
         with:
           username: "Normeur"
-          webhook-url: https://discord.com/api/webhooks/934469529294213170/rAuzxaBhzJOiD3om5SC414bdtL23Y97Z6c5P0rVHoTUWsEacFvnJaxpaioPi3g7ykEHN
+          webhook-url: $web
           filename: flag.png
