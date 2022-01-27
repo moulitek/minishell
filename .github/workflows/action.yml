@@ -24,6 +24,7 @@ jobs:
           makecode=$?
           make
           echo "exitt" | ./mysh
+          echo "ls" | ./mysh
           ./mouliVD/script
           testcode=$?
           if (((makecode == 0) && (testcode == 0)))
