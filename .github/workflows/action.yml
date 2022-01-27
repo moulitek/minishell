@@ -22,9 +22,7 @@ jobs:
           mv bad-flag.png flag.png
           eval "make re"
           makecode=$?
-          make
-          echo "exitt" | ./mysh
-          echo "ls" | ./mysh
+          make run
           ./mouliVD/script
           testcode=$?
           if (((makecode == 0) && (testcode == 0)))
