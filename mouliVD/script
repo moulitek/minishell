@@ -1,0 +1,15 @@
+#!/bin/sh
+make re
+test_expect_success () {
+    res=`echo "${1}" | ./mysh`
+    tcsh=`echo "${1}" | ./tcsh`
+    ret1=$(bash -c "echo $?")
+    if [[ "${ret1}" == 84 ]] || [[ "${res}" != "${tcsh}" ]]; then
+        exit 84
+    else echo "ok"
+  fi
+}
+
+test_expect_success "echo 'exitt'"
+
+make fclean
