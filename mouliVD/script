@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 make re
 test_expect_success () {
     res=`echo "${1}" | ./mysh`
