@@ -30,7 +30,7 @@ jobs:
           echo $testcode
           if (((makecode == 0) && (testcode == 0)))
           then
-            echo "color=651525" >> $GITHUB_ENV
+            echo "color=65280" >> $GITHUB_ENV
             rm flag.png
             mv good-flag.png flag.png
           fi
