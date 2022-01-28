@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: install thingz
-        run: sudo apt install -y clang-tidy clang-format inkscape ghostscript
+        run: sudo apt install -y clang-tidy clang-format inkscape tcsh
       - name : make flags
         run: |
           curl https://img.shields.io/badge/test-passing-green -o good-flag.svg
@@ -24,6 +24,7 @@ jobs:
           makecode=$?
           ./mouliVD/script
           testcode=$?
+          echo $testcode
           if (((makecode == 0) && (testcode == 0)))
           then
             echo -ne "# Aucune erreur de compilation\n\n" > output.md
