@@ -5,7 +5,7 @@ test_expect_success () {
     tcsh=`echo "${1}" | tcsh`
     ret1=$(bash -c "echo $?")
     if [[ "${ret1}" == 84 ]] || [[ "${res}" != "${tcsh}" ]]; then
-        exit 84
+        return 84
     else echo "ok"
   fi
 }

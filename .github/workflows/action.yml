@@ -15,7 +15,11 @@ jobs:
           curl https://img.shields.io/badge/test-failed-red -o bad-flag.svg
           inkscape good-flag.svg --export-png=good-flag.png
           inkscape bad-flag.svg --export-png=bad-flag.png
-      - name: Compile
+      - name: get-wehook
+        run : |
+          web=`cat weblink`
+          echo "hook=$web" >> $GITHUB_ENV
+      - name: Compile_and_test
         run: |
           echo "color=12000000" >> $GITHUB_ENV
           mv bad-flag.png flag.png
@@ -30,8 +34,6 @@ jobs:
             rm flag.png
             mv good-flag.png flag.png
           fi
-          web=`cat weblink`
-          echo "hook=$web" >> $GITHUB_ENV
       - name: Ardorax Coding Style and Discord
         if: always()
         uses: Ardorax/EpitechStyle@latest
