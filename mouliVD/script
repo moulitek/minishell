@@ -11,5 +11,6 @@ test_expect_success () {
 }
 
 test_expect_success "echo exitt"
-
+test_expect_success "echo ls"
+test_expect_success "echo ls -l"
 make fclean
