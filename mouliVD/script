@@ -2,7 +2,7 @@
 make re
 test_expect_success () {
     res=`echo "${1}" | ./mysh`
-    tcsh=`echo "${1}" | ./tcsh`
+    tcsh=`echo "${1}" | tcsh`
     ret1=$(bash -c "echo $?")
     if [[ "${ret1}" == 84 ]] || [[ "${res}" != "${tcsh}" ]]; then
         exit 84
@@ -10,6 +10,6 @@ test_expect_success () {
   fi
 }
 
-test_expect_success "echo 'exitt'"
+test_expect_success "echo exitt"
 
 make fclean
