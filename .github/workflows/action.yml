@@ -17,7 +17,6 @@ jobs:
           inkscape bad-flag.svg --export-png=bad-flag.png
       - name: Compile
         run: |
-          echo -ne "# Il y a eu une erreur de compilation !\n\n" >> output.md
           echo "color=12000000" >> $GITHUB_ENV
           mv bad-flag.png flag.png
           eval "make re"
@@ -27,25 +26,18 @@ jobs:
           echo $testcode
           if (((makecode == 0) && (testcode == 0)))
           then
-            echo -ne "# Aucune erreur de compilation\n\n" > output.md
             echo "color=651525" >> $GITHUB_ENV
             rm flag.png
             mv good-flag.png flag.png
           fi
           web=`cat weblink`
           echo "hook=$web" >> $GITHUB_ENV
-      - name: Coding Style
-        run: |
-          echo "$(python3 abricot.py)" >> output.md
-      - name: Discord notification
+      - name: Ardorax Coding Style and Discord
         if: always()
-        uses: tsickert/discord-webhook@v4.0.0
+        uses: Ardorax/EpitechStyle@latest
         with:
-          webhook-url: ${{ env.hook }}
-          embed-title: "Voici le résultat de votre moulinette :"
-          embed-color: ${{ env.color }}
-          filename: output.md
-          username: "Normeur"
+          URL: ${{ env.hook }}
+          COLOR: ${{ env.color }}
       - name: mouli message
         if: always()
         uses: tsickert/discord-webhook@v4.0.0
