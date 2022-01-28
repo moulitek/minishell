@@ -21,7 +21,7 @@ jobs:
           echo "hook=$web" >> $GITHUB_ENV
       - name: Compile_and_test
         run: |
-          echo "color=12000000" >> $GITHUB_ENV
+          echo "color=16711680" >> $GITHUB_ENV
           mv bad-flag.png flag.png
           eval "make re"
           makecode=$?
