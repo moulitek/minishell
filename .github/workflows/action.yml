@@ -1,4 +1,4 @@
-name: MessageME
+name: CI_minishell
 
 on: push
 
@@ -19,10 +19,14 @@ jobs:
         run : |
           web=`cat weblink`
           echo "hook=$web" >> $GITHUB_ENV
+      - name: Ardorax Coding Style
+        uses: Ardorax/EpitechStyle@latest
+        id: coding_style
       - name: Compile_and_test
         run: |
           echo "color=16711680" >> $GITHUB_ENV
           mv bad-flag.png flag.png
+          echo "DESCRIPTION=Build ERROR" >> $GITHUB_ENV
           eval "make re"
           makecode=$?
           ./mouliVD/script
@@ -33,17 +37,22 @@ jobs:
             echo "color=65280" >> $GITHUB_ENV
             rm flag.png
             mv good-flag.png flag.png
+            echo "DESCRIPTION=SUCCES" >> $GITHUB_ENV
           fi
-      - name: Ardorax Coding Style and Discord
+      - name: normi message
         if: always()
-        uses: Ardorax/EpitechStyle@latest
+        uses: Ardorax/EpitechStyleDiscord@latest
         with:
-          URL: ${{ env.hook }}
-          COLOR: ${{ env.color }}
+          COLOR: ${{ env.COLOR }}
+          DESCRIPTION: ${{ env.DESCRIPTION }}
+          SUMMARY: ${{ steps.coding_style.outputs.SUMMARY }}
+          TRACE: trace.md
+          USERNAME: Normeur
+          URL: ${{env.hook}}
       - name: mouli message
         if: always()
-        uses: tsickert/discord-webhook@v4.0.0
+        uses: Ardorax/EpitechStyleDiscord@latest
         with:
-          username: "Normeur"
-          webhook-url: ${{ env.hook }}
-          filename: flag.png
+          USERNAME: "Flag"
+          URL: ${{ env.hook }}
+          TRACE: flag.png
