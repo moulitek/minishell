@@ -50,16 +50,6 @@ jobs:
           COLOR: ${{ env.color }}
           DESCRIPTION: ${{ env.DESCRIPTION }}
           SUMMARY: ${{ steps.coding_style.outputs.SUMMARY }}
-          TRACE: trace.md
-          USERNAME: Normeur
-          URL: ${{env.hook}}
-      - name: mouli message
-        if: always()
-        uses: Ardorax/EpitechStyleDiscord@latest
-        with:
-          COLOR: ${{ env.color }}
-          DESCRIPTION: ${{ env.DESCRIPTION }}
-          SUMMARY: ${{ steps.coding_style.outputs.SUMMARY }}
-          TRACE: flag.png
+          FILES: trace.md;flag.png
           USERNAME: Normeur
           URL: ${{env.hook}}
