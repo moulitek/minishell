@@ -32,24 +32,17 @@ jobs:
           mv bad-flag.png flag.png
           echo "DESCRIPTION=Build ERROR" >> $GITHUB_ENV
           eval "make re"
-          makecode=$?
+
+          echo "color=16744192" >> $GITHUB_ENV
+          rm flag.png
+          mv test-flag.png flag.png
+          echo "DESCRIPTION=test-error" >> $GITHUB_ENV
+
           ./mouliVD/script
-          testcode=$?
-          echo $testcode
-          if (((makecode == 0) && (testcode != 0)))
-          then
-            echo "color=16744192" >> $GITHUB_ENV
-            rm flag.png
-            mv test-flag.png flag.png
-            echo "DESCRIPTION=test-error" >> $GITHUB_ENV
-          fi
-          if (((makecode == 0) && (testcode == 0)))
-          then
-            echo "color=65280" >> $GITHUB_ENV
-            rm flag.png
-            mv good-flag.png flag.png
-            echo "DESCRIPTION=SUCCES" >> $GITHUB_ENV
-          fi
+          echo "color=65280" >> $GITHUB_ENV
+          rm flag.png
+          mv good-flag.png flag.png
+          echo "DESCRIPTION=SUCCES" >> $GITHUB_ENV
       - name: normi message
         if: always()
         uses: Ardorax/EpitechStyleDiscord@latest
