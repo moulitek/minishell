@@ -11,8 +11,8 @@ jobs:
         run: sudo apt install -y clang-tidy clang-format inkscape tcsh
       - name : make flags
         run: |
-          curl https://img.shields.io/badge/mouli-success-light--green?style=for-the-badge&logo=Cachet -o good-flag.svg
-          curl https://img.shields.io/badge/mouli-build%20error-ff0000?style=for-the-badge&logo=ZeroMQ -o bad-flag.svg
+          curl "https://img.shields.io/badge/mouli-success-light--green?style=for-the-badge&logo=Cachet" -o good-flag.svg
+          curl "https://img.shields.io/badge/mouli-build%20error-ff0000?style=for-the-badge&logo=ZeroMQ" -o bad-flag.svg
           inkscape good-flag.svg --export-png=good-flag.png
           inkscape bad-flag.svg --export-png=bad-flag.png
       - name: get-wehook
