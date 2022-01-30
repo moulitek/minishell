@@ -40,10 +40,10 @@ jobs:
             echo "DESCRIPTION=SUCCES" >> $GITHUB_ENV
           fi
       - name: normi message
-        if: always()
+        if: always():
         uses: Ardorax/EpitechStyleDiscord@latest
         with:
-          COLOR: ${{ env.COLOR }}
+          COLOR: ${{ env.color }}
           DESCRIPTION: ${{ env.DESCRIPTION }}
           SUMMARY: ${{ steps.coding_style.outputs.SUMMARY }}
           TRACE: trace.md
@@ -53,6 +53,7 @@ jobs:
         if: always()
         uses: Ardorax/EpitechStyleDiscord@latest
         with:
+          COLOR: ${{ env.COLOR }}
           USERNAME: "Flag"
           URL: ${{ env.hook }}
           TRACE: flag.png
