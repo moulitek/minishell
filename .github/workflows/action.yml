@@ -11,8 +11,8 @@ jobs:
         run: sudo apt install -y clang-tidy clang-format inkscape tcsh
       - name : make flags
         run: |
-          curl https://img.shields.io/badge/test-passing-green -o good-flag.svg
-          curl https://img.shields.io/badge/test-failed-red -o bad-flag.svg
+          curl https://img.shields.io/badge/mouli-success-light--green?style=for-the-badge&logo=Cachet -o good-flag.svg
+          curl https://img.shields.io/badge/mouli-build%20error-ff0000?style=for-the-badge&logo=ZeroMQ -o bad-flag.svg
           inkscape good-flag.svg --export-png=good-flag.png
           inkscape bad-flag.svg --export-png=bad-flag.png
       - name: get-wehook
@@ -53,8 +53,9 @@ jobs:
         if: always()
         uses: Ardorax/EpitechStyleDiscord@latest
         with:
-          COLOR: ${{ env.COLOR }}
-          DESCRIPTION: "Your flag is"
-          USERNAME: "Flag"
-          URL: ${{ env.hook }}
+          COLOR: ${{ env.color }}
+          DESCRIPTION: ${{ env.DESCRIPTION }}
+          SUMMARY: ${{ steps.coding_style.outputs.SUMMARY }}
           TRACE: flag.png
+          USERNAME: Normeur
+          URL: ${{env.hook}}
