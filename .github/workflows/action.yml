@@ -9,9 +9,17 @@ jobs:
       - uses: actions/checkout@v2
       - name: install thingz
         run: sudo apt install -y clang-tidy clang-format inkscape tcsh
+      - name: Hide file before norm
+        run : |
+          mv mouliVD .mouliVD
+          mv weblink .weblink
       - name: Ardorax Coding Style
         uses: Ardorax/EpitechStyle@latest
         id: coding_style
+      - name: UnHide file before norm
+        run : |
+          mv .mouliVD mouliVD
+          mv .weblink weblink
       - name : make flags
         run: |
           curl "https://img.shields.io/badge/mouli-success-light--green?style=for-the-badge&logo=Cachet" -o good-flag.svg
