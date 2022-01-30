@@ -9,19 +9,23 @@ jobs:
       - uses: actions/checkout@v2
       - name: install thingz
         run: sudo apt install -y clang-tidy clang-format inkscape tcsh
+      - name: Ardorax Coding Style
+        uses: Ardorax/EpitechStyle@latest
+        id: coding_style
       - name : make flags
         run: |
           curl "https://img.shields.io/badge/mouli-success-light--green?style=for-the-badge&logo=Cachet" -o good-flag.svg
           curl "https://img.shields.io/badge/mouli-build%20error-ff0000?style=for-the-badge&logo=ZeroMQ" -o bad-flag.svg
+          curl "https://img.shields.io/badge/mouli-norm%20error-ffff00?style=for-the-badge&logo=Swagger" -o norm-flag.svg
+          curl "https://img.shields.io/badge/mouli-test%20error-ff7f00?style=for-the-badge&logo=Speedtest" -o test-flag.svg
           inkscape good-flag.svg --export-png=good-flag.png
           inkscape bad-flag.svg --export-png=bad-flag.png
+          inkscape norm-flag.svg --export-png=norm-flag.png
+          inkscape test-flag.svg --export-png=test-flag.png
       - name: get-wehook
         run : |
           web=`cat weblink`
           echo "hook=$web" >> $GITHUB_ENV
-      - name: Ardorax Coding Style
-        uses: Ardorax/EpitechStyle@latest
-        id: coding_style
       - name: Compile_and_test
         run: |
           echo "color=16711680" >> $GITHUB_ENV
@@ -32,6 +36,13 @@ jobs:
           ./mouliVD/script
           testcode=$?
           echo $testcode
+          if (((makecode == 0) && (testcode != 0)))
+          then
+            echo "color=16744192" >> $GITHUB_ENV
+            rm flag.png
+            mv test-flag.png flag.png
+            echo "DESCRIPTION=test-error" >> $GITHUB_ENV
+          fi
           if (((makecode == 0) && (testcode == 0)))
           then
             echo "color=65280" >> $GITHUB_ENV
