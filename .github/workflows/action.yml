@@ -43,6 +43,14 @@ jobs:
           rm flag.png
           mv good-flag.png flag.png
           echo "DESCRIPTION=SUCCES" >> $GITHUB_ENV
+
+          if ((${{ env.NORM }} == 1))
+          then
+            echo "color=16776960" >> $GITHUB_ENV
+            rm flag.png
+            mv norm-flag.png flag.png
+            echo "DESCRIPTION=NORM ERROR" >> $GITHUB_ENV
+          fi
       - name: normi message
         if: always()
         uses: Ardorax/EpitechStyleDiscord@latest
