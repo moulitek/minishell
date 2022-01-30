@@ -43,7 +43,7 @@ jobs:
           rm flag.png
           mv good-flag.png flag.png
           echo "DESCRIPTION=SUCCES" >> $GITHUB_ENV
-
+          echo ${{ env.NORM }}
           if ((${{ env.NORM }} == 1))
           then
             echo "color=16776960" >> $GITHUB_ENV
